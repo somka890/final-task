@@ -1,0 +1,80 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+    margin: 0;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-items: center;         
+    text-align: center;         
+    padding: 2rem;
+  }
+  
+
+.page-container h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    /* background: #FFE7C1;
+    background: radial-gradient(ellipse farthest-corner at center center, #FFE7C1 15%, #53868D 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+
+.page-container p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.note-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    max-width: 960px;
+}
+
+.note-controls-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.search-input,
+.tag-filter {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    flex: 1 1 200px;
+    cursor: pointer;
+}
+
+.add-note-btn {
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.add-note-btn:hover {
+    background: #4338ca;
+}

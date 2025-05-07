@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="notes.css">
     <link rel="stylesheet" href="icon/css/all.min.css">
     <link rel="stylesheet" href="icon/css/fontawesome.min.css">
+
     <script defer src="notes.js"></script>
 </head>
 
@@ -22,128 +23,18 @@
 
     <div class="note-controls">
         <div class="note-controls-inner">
-            <input 
-                type="text"
-                id="search-input"
-                placeholder="Search notes..."
-                class="search-input"
-            >
+            <input type="text" id="search-input" placeholder="Search notes..." class="search-input">
             <div class="tag-filter-group">
                 <select id="tag-filter" class="tag-filter">
-                    <option value="all">All notes</option>
-                    <option value="work">Work</option>
-                    <option value="personal">Personal</option>
-                    <option value="ideas">Ideas</option>
-                    <option value="reminder">Reminders</option>
+                    <option value="all">&#xf0c9; All notes</option>
+                    <option value="work">&#xf0b1; Work</option>
+                    <option value="personal">&#xf007; Personal</option>
+                    <option value="ideas">&#xf0eb; Ideas</option>
+                    <option value="reminder">&#xf0f3; Reminder</option>
                 </select>
                 <button id="add-note-btn" class="add-note-btn">
-                    <i class="fa-solid fa-plus"></i> Add
+                    <i class="fa fa-plus"></i> Add
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <div id="notes-list" class="notes-grid"></div>
-
-    <div id="no-notes-message" class="empty-notes">
-        <i class="fa-solid fa-notes-medical"></i>
-        <h3>No Notes</h3>
-        <p>Let your thoughts stick – click 'Add' to create your first note</p>
-    </div>
-
-    <div id="note-popup" class="popup-overlay">
-        <div class="popup-window">
-            <div class="popup-header">
-                <h3 class="popup-title">New Note</h3>
-                <button id="close-popup-btn" class="close-popup-btn">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-            </div>
-
-            <form id="note-form" class="popup-body">
-                <div class="form-group">
-                    <label for="note-title" class="form-label">Title</label>
-                    <input type="text" id="note-title" class="form-input" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="note-content" class="form-label">Content</label>
-                    <textarea 
-                        id="note-content"
-                        class="form-input note-textarea"
-                        required
-                    ></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Tags</label>
-                    <div class="tags-wrapper">
-                        <label class="tag-choice">
-                            <input 
-                                type="radio"
-                                name="noteTag"
-                                value="work"
-                                class="tag-radio"
-                            >
-                            <span class="tag-label tag-work">
-                                <i class="fa-solid fa-briefcase"></i>Work                          
-                            </span>
-                        </label>
-                        <label class="tag-choice">
-                            <input 
-                                type="radio"
-                                name="noteTag"
-                                value="personal"
-                                class="tag-radio"
-                            >
-                            <span class="tag-label tag-personal">
-                                <i class="fa-solid fa-user"></i>Personal                                                                                        
-                            </span>
-                        </label>
-                        <label class="tag-choice">
-                            <input 
-                                type="radio"
-                                name="noteTag"
-                                value="ideas"
-                                class="tag-radio"
-                                checked
-                            >
-                            <span class="tag-label tag-ideas">
-                                <i class="fa-solid fa-lightbulb"></i>Ideas                    
-                            </span>
-                        </label>
-                        <label class="tag-choice">
-                            <input 
-                                type="radio"
-                                name="noteTag"
-                                value="reminders"
-                                class="tag-radio"
-                            >
-                            <span class="tag-label tag-reminders">
-                                <i class="fa-solid fa-bell"></i>Reminder                                                                                       
-                            </span>
-                        </label>
-                    </div>
-                </div>
-                <button type="submit" class="save-note-btn">Save Note</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="delete-popup" class="popup-overlay">
-        <div class="popup-window confirm-popup">
-            <div class="popup-body">
-                <p class="confirmation-message">
-                    Are you sure you want to delete this note?
-                </p>
-                <div class="confirmation-actions">
-                    <button id="cancel-delete-btn" class="action-btn cancel-btn">
-                        Cancel
-                    </button>
-                    <button id="confirm-delete-btn" class="action-btn delete-btn">
-                        Delete
-                    </button>
-                </div>
             </div>
         </div>
     </div>

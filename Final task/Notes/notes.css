@@ -1,37 +1,49 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f6fa;
-    color: #333;
+body {  
     margin: 0;
+    color: #333;
+
+
+    font-family: "Oregano", cursive;
+    font-weight: 400;
+    font-style: normal;
+
+    
 }
 
 .page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;    
-    align-items: center;         
-    text-align: center;         
+    text-align: center;
     padding: 2rem;
-  }
-  
+}
 
 .page-container h1 {
-    font-size: 3rem;
+    font-size: 4rem;
+    color: #4f46e5;
     margin-bottom: 0.5rem;
-    /* background: #FFE7C1;
-    background: radial-gradient(ellipse farthest-corner at center center, #FFE7C1 15%, #53868D 50%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
+    
+    font-family: "Rubik Glitch", system-ui;
+    font-weight: 100;
+    font-style: initial;  
+  
+}
+
+
+input, button,textarea, select {
+    font-family: "Oregano", cursive;
+    font-weight: 400;
+    font-style: italic;
 }
 
 .page-container p {
-    font-size: 1rem;
-    color: #666;
+    font-size: 2rem;
+    color: #514f4f;
+    
+    
+    
 }
 
 .note-controls {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
@@ -39,16 +51,19 @@ body {
     background: #fff;
     border-radius: 12px;
     padding: 1rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.269);
     max-width: 960px;
+
+   
 }
 
 .note-controls-inner {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;               
     gap: 1rem;
     width: 100%;
-    justify-content: center;
 }
 
 .search-input,
@@ -58,23 +73,295 @@ body {
     border: 1px solid #ccc;
     font-size: 1rem;
     flex: 1 1 200px;
-    cursor: pointer;
 }
+
+.tag-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 
 .add-note-btn {
     background: #4f46e5;
     color: #fff;
     border: none;
-    border-radius: 12px;
+    border-radius: 12px;;
     padding: 0.75rem 1.5rem;
     font-weight: 500;
     display: flex;
-    align-items: center;
     gap: 0.5rem;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+    margin-top: 0;
+    align-items: center;
 }
 
 .add-note-btn:hover {
     background: #4338ca;
 }
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0 2rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+
+.note-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    word-wrap: break-word;
+}
+
+.note-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.note-actions {
+    text-align: right;
+}
+
+.note-actions button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.note-actions button:hover {
+    color: #e6857a;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.note-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: #eee;
+}
+
+.note-tag.work {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.note-tag.personal {
+    background-color: #fef3c7;
+    color: #f59e0b;
+}
+
+.note-tag.ideas {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.note-tag.reminders {
+    background: #fec7c7;
+    color: #f50b0b;
+}
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup-overlay.active {
+    display: flex;
+}
+
+.popup-window {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 95%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+
+
+.popup-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.close-popup-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-body .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-input,
+.note-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font: inherit;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+
+.tags-wrapper {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.tag-choice {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tag-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.tag-work {
+    background: #e0e7ff;
+    color: #4f46e5;
+}
+
+.tag-personal {
+    background-color: #fef3c7;
+    color: #f59e0b;
+}
+
+.tag-ideas {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.tag-reminders {
+    background: #fec7c7;
+    color: #f50b0b;
+}
+
+.save-note-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.empty-notes {
+    text-align: center;
+    color: #999;
+    margin-top: 2rem;
+    font-style: italic;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+
+.cancel-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #4338ca;
+}
+
+
+.delete-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #dc2626;
+}
+
+
+.note-card.work {
+    box-shadow: 0 6px 24px rgba(13, 0, 255, 0.500);
+}
+
+.note-card.personal {
+    box-shadow: 0 6px 24px rgba(247, 156, 0, 0.493);
+}
+
+.note-card.ideas {
+    box-shadow: 0 6px 24px rgba(0, 255, 136, 0.507);
+}
+
+.note-card.reminders {
+    box-shadow: 0 6px 24px rgba(247, 0, 0, 0.493);
+}
+
+
+.popup-body .form-group {
+    padding-right: 2rem;
+}
+
+
+
+
+
+
+ 
+

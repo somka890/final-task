@@ -1,0 +1,419 @@
+body {
+    margin: 0;
+    color: #FFFFFF;
+    font-family: "Oregano", cursive;
+    font-weight: 400;
+    font-style: normal;
+    background:
+        linear-gradient(135deg, #1A1A1A, #2C2C2C) fixed;
+    background-blend-mode: overlay;
+}
+
+.page-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.page-container h1 {
+    font-size: 4rem;
+    color: #8C6FF4;
+    margin-bottom: 0.5rem;
+    font-family: "Rubik Glitch", system-ui;
+    font-weight: 100;
+    font-style: initial;
+    text-shadow:
+        0 0 8px rgba(140, 111, 244, 0.6),
+        0 0 16px rgba(140, 111, 244, 0.4);
+}
+
+.page-container p {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.72);
+
+    font-family: "Rubik Glitch", system-ui;
+    font-weight: 100;
+    font-style: initial;
+    text-shadow:
+        0 0 8px rgba(140, 111, 244, 0.6),
+        0 0 16px rgba(140, 111, 244, 0.4);
+}
+
+input,
+button,
+textarea,
+select {
+    font-family: "Oregano", cursive;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.note-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    max-width: 960px;
+
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.note-controls-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+
+.search-input,
+.tag-filter {
+    flex: 1 1 200px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #FFFFFF;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px) saturate(110%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+}
+
+.tag-filter option {
+    font-weight: 700;
+    color: #494747;
+}
+
+.tag-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.add-note-btn,
+.save-note-btn {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    color: #FFFFFF;
+    background: linear-gradient(90deg, #a601ff, #6f00ff);
+    box-shadow: 0 4px 12px rgba(140, 111, 244, 0.6);
+    transition: background 0.2s ease-in-out;
+}
+
+.add-note-btn::before,
+.save-note-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.add-note-btn:hover,
+.save-note-btn:hover {
+    background: linear-gradient(135deg, #3813C2, #FF6FD8);
+    opacity: 0.9;
+}
+
+.add-note-btn:hover::before,
+.save-note-btn:hover::before {
+    opacity: 1;
+}
+
+.cancel-btn,
+.edit-btn,
+.delete-btn {
+    padding: 8px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(224, 224, 224, 0.3);
+    transition: opacity 0.3s;
+}
+
+.cancel-btn {
+    background: linear-gradient(135deg, #22C55E, #4ADE80);
+    border-color: rgba(34, 197, 94, 0.5);
+    color: #FFFFFF;
+}
+
+.edit-btn,
+.delete-btn {
+    background: linear-gradient(135deg, #FF6B6B, #E63946);
+    border-color: rgba(255, 107, 107, 0.5);
+    color: #FFFFFF;
+}
+
+.cancel-btn:hover {
+    opacity: 0.7;
+}
+
+.edit-btn:hover {
+    opacity: 0.7;
+}
+
+.delete-btn:hover {
+    opacity: 0.7;
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0 2rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.note-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+    word-wrap: break-word;
+
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+    transform: translateY(0);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.note-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+}
+
+.note-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+.note-header {
+    display: block;
+    padding-top: 2.5rem;
+}
+
+.note-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.note-actions button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.note-actions button:hover {
+    color: #8C6FF4;
+}
+
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.56);
+}
+
+.note-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+    transition: filter 0.3s;
+}
+
+.note-tag:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.note-tag.work {
+    background: linear-gradient(135deg, #8C6FF4, #5E4CEB);
+    border-color: rgba(140, 111, 244, 0.5);
+}
+
+.note-tag.personal {
+    background: linear-gradient(135deg, #F97316, #FB8500);
+    border-color: rgba(249, 115, 22, 0.5);
+}
+
+.note-tag.ideas {
+    background: linear-gradient(135deg, #22C55E, #4ADE80);
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+.note-tag.reminders {
+    background: linear-gradient(135deg, #FF6B6B, #E63946);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup-overlay.active {
+    display: flex;
+}
+
+.popup-window {
+    position: relative;
+    width: 95%;
+    max-width: 600px;
+    padding: 2rem;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(16px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.popup-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+.close-popup-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.popup-body .form-group {
+    margin-bottom: 1.2rem;
+    padding-right: 2rem;
+}
+
+.form-input,
+.note-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font: inherit;
+    color: #FFFFFF;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px) saturate(110%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.tags-wrapper {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.tag-choice {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tag-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+}
+
+.tag-label:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.tag-work {
+    background: linear-gradient(135deg, #8C6FF4, #5E4CEB);
+    border-color: rgba(140, 111, 244, 0.5);
+}
+
+.tag-personal {
+    background: linear-gradient(135deg, #F97316, #FB8500);
+    border-color: rgba(249, 115, 22, 0.5);
+}
+
+.tag-ideas {
+    background: linear-gradient(135deg, #22C55E, #4ADE80);
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+.tag-reminders {
+    background: linear-gradient(135deg, #FF6B6B, #E63946);
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.empty-notes {
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}

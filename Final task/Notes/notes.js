@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  
   const notesList = document.getElementById('notes-list');
   const searchInput = document.getElementById('search-input');
   const tagFilter = document.getElementById('tag-filter');
@@ -14,10 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const cancelEditBtn = document.getElementById('cancel-edit-btn');
   const confirmEditBtn = document.getElementById('confirm-edit-btn');
 
+  // pasiima uzrasus is localStorage
   let notes = JSON.parse(localStorage.getItem('notes')) || [];
   let noteToDeleteId = null;
   let editingNoteId = null;
 
+  // prideda taga
   function getTagLabel(tag) {
     const labels = {
       work: '<i class="fa fa-briefcase"></i> Work',
@@ -28,25 +31,31 @@ document.addEventListener('DOMContentLoaded', function () {
     return labels[tag] || tag;
   }
 
+  // datos formatas
   function formatDate(dateStr) {
     const d = new Date(dateStr);
     return d.toLocaleDateString('en-GB', {
-      day: '2-digit', month: '2-digit',
+      day: '2-digit',
+      month: '2-digit',
       year: 'numeric',
-      hour: '2-digit', minute: '2-digit'
+      hour: '2-digit',
+      minute: '2-digit'
     });
   }
 
+  // rodo uzrasus
   function renderNotes(filtered = notes) {
     notesList.innerHTML = '';
+
     filtered.forEach((note, i) => {
+      // sukuria kortele
       const card = document.createElement('div');
       card.className = `note-card ${note.tag}`;
       card.innerHTML = `
         <div class="note-header">
           <h3 class="note-title">${note.title}</h3>
           <div class="note-actions">
-            <button class="action-btn edit-btn"   data-id="${i}"><i class="fas fa-edit"></i></button>
+            <button class="action-btn edit-btn" data-id="${i}"><i class="fas fa-edit"></i></button>
             <button class="action-btn delete-btn" data-id="${i}"><i class="fas fa-trash"></i></button>
           </div>
         </div>
@@ -59,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
       notesList.appendChild(card);
     });
 
+    // trynimo popup
     notesList.querySelectorAll('.note-actions .delete-btn')
       .forEach(btn => btn.addEventListener('click', () => {
         noteToDeleteId = +btn.dataset.id;
@@ -66,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = 'hidden';
       }));
 
+    // redagavimo popup
     notesList.querySelectorAll('.note-actions .edit-btn')
       .forEach(btn => btn.addEventListener('click', () => {
         editingNoteId = +btn.dataset.id;
@@ -73,9 +84,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = 'hidden';
       }));
 
+    // rodo pranesima jei nera uzrasu
     noNotesMessage.style.display = filtered.length ? 'none' : 'block';
   }
 
+  // filtruoja pagal paieska ir taga
   function filterNotes() {
     const q = searchInput.value.toLowerCase();
     const t = tagFilter.value;
@@ -87,10 +100,12 @@ document.addEventListener('DOMContentLoaded', function () {
     renderNotes(result);
   }
 
+  // issaugo i localStorage
   function saveNotes() {
     localStorage.setItem('notes', JSON.stringify(notes));
   }
 
+  // atidaro popup naujam uzrasui
   addNoteBtn.addEventListener('click', () => {
     editingNoteId = null;
     noteForm.reset();
@@ -99,17 +114,21 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.style.overflow = 'hidden';
   });
 
+  // uzdaro popup
   closePopupBtn.addEventListener('click', () => {
     notePopup.classList.remove('active');
     document.body.style.overflow = 'auto';
     editingNoteId = null;
   });
 
+  // atsaukia trynima
   cancelDeleteBtn.addEventListener('click', () => {
     deletePopup.classList.remove('active');
     document.body.style.overflow = 'auto';
     noteToDeleteId = null;
   });
+
+  // patvirtina trynima
   confirmDeleteBtn.addEventListener('click', () => {
     if (noteToDeleteId !== null) {
       deletePopup.classList.remove('active');
@@ -121,11 +140,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // atsaukia redagavima
   cancelEditBtn.addEventListener('click', () => {
     editPopup.classList.remove('active');
     document.body.style.overflow = 'auto';
     editingNoteId = null;
   });
+
+  // atidaro redagavimo langa
   confirmEditBtn.addEventListener('click', () => {
     if (editingNoteId !== null) {
       editPopup.classList.remove('active');
@@ -139,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // prideda nauja uzrasa arba redaguoja esama
   noteForm.addEventListener('submit', e => {
     e.preventDefault();
     const title = document.getElementById('note-title').value;
@@ -162,8 +185,11 @@ document.addEventListener('DOMContentLoaded', function () {
     notePopup.querySelector('.popup-title').textContent = 'New Note';
   });
 
+  // iesko pagal teksta
   searchInput.addEventListener('input', filterNotes);
+  // filtruoja pagal taga
   tagFilter.addEventListener('change', filterNotes);
+
 
   renderNotes();
 });
